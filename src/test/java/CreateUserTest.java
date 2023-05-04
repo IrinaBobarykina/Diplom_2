@@ -59,7 +59,6 @@ public class CreateUserTest {
         Response response = UserOperations.createUser(user);
         //accessToken нужен для последующего удаления курьера
         accessToken = response.then().extract().path("accessToken").toString();
-        UserOperations.createUser(user);
         UserOperations.createUser(user)
                 .then().assertThat().statusCode(HttpStatus.SC_FORBIDDEN)
                 .and()

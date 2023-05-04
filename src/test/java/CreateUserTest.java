@@ -13,7 +13,6 @@ import utils.BaseURI;
 import static org.hamcrest.CoreMatchers.*;
 
 public class CreateUserTest {
-    private static String user_name;
     private static String domain_name;
     private static String email;
     private static String password;
@@ -26,9 +25,8 @@ public class CreateUserTest {
     @Before
     public void setUp() {
         RestAssured.baseURI = BaseURI.BASE_URI;
-        user_name = RandomStringUtils.randomAlphabetic(8);
         domain_name = "@gmail.com";
-        email = user_name + domain_name;
+        email = RandomStringUtils.randomAlphabetic(8) + domain_name;
         password = RandomStringUtils.randomAlphabetic(8);
         name = RandomStringUtils.randomAlphabetic(8);
     }

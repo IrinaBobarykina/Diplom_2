@@ -2,7 +2,7 @@ package utils;
 
 public class APIs {
 
-//    создание юзера POSt
+//    создание юзера POST
 public static final String REGISTER_PATH = "/api/auth/register";
 
 //    логин юзера POST

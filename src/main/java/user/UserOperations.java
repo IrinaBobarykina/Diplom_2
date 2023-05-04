@@ -19,8 +19,8 @@ public class UserOperations {
         return response;
     }
 
-    @Step("Sign in an user")
-    public static Response signInUser(User user) {
+    @Step("Log in an user")
+    public static Response logInUser(User user) {
         Response response = given()
                 .header("Content-type", "application/json")
                 .and()

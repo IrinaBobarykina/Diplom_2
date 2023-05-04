@@ -16,7 +16,7 @@ public class User {
         this.name = name;
     }
 
-    public String getLogin() {
+    public String getEmail() {
         return email;
     }
 

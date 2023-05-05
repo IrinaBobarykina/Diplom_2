@@ -15,7 +15,7 @@ public class Generator {
         return new User(email, password, name);
     }
 
-    public static UserEditedData generateUserData() {
+    public static UserEditedData generateUserEditedData() {
         String newEmail = RandomStringUtils.randomAlphabetic(8) + domain_name;
         String newPassword = RandomStringUtils.randomAlphabetic(8);
         String newName = RandomStringUtils.randomAlphabetic(8);

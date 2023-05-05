@@ -24,7 +24,7 @@ public class EditUserTest {
     public void setUp() {
         RestAssured.baseURI = BaseURI.BASE_URI;
         user = Generator.generateUser();
-        userEditedData = Generator.generateUserData();
+        userEditedData = Generator.generateUserEditedData();
     }
 
     @After
@@ -39,7 +39,14 @@ public class EditUserTest {
         Response responseCreating = UserOperations.createUser(user);
         //accessToken нужен для редактирования и последующего удаления юзера
         accessToken = responseCreating.then().extract().path("accessToken").toString();
-        UserOperations.editAuthorizedUser(accessToken, userEditedData).then().assertThat().statusCode(HttpStatus.SC_OK).and().body("success", equalTo(true)).and().body("user", notNullValue());
+        UserOperations.editAuthorizedUser(accessToken, userEditedData)
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_OK)
+                .and()
+                .body("success", equalTo(true))
+                .and()
+                .body("user", notNullValue());
     }
 
     @Test
@@ -49,6 +56,13 @@ public class EditUserTest {
         Response responseCreating = UserOperations.createUser(user);
         //accessToken нужен для редактирования и последующего удаления юзера
         accessToken = responseCreating.then().extract().path("accessToken").toString();
-        UserOperations.editUnauthorizedUser(accessToken, userEditedData).then().assertThat().statusCode(HttpStatus.SC_UNAUTHORIZED).and().body("success", equalTo(false)).and().body("message", equalTo("You should be authorised"));
+        UserOperations.editUnauthorizedUser(accessToken, userEditedData)
+                .then()
+                .assertThat()
+                .statusCode(HttpStatus.SC_UNAUTHORIZED)
+                .and()
+                .body("success", equalTo(false))
+                .and()
+                .body("message", equalTo("You should be authorised"));
     }
 }

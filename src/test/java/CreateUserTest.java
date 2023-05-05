@@ -41,7 +41,7 @@ public class CreateUserTest {
     public void createNewUserGetSuccessResponse() {
         user = new User(email, password, name);
         Response response = UserOperations.createUser(user);
-        //accessToken нужен для последующего удаления курьера
+        //accessToken нужен для последующего удаления юзера
         accessToken = response.then().extract().path("accessToken").toString();
         response.then().assertThat().statusCode(HttpStatus.SC_OK)
                 .and()
@@ -57,7 +57,7 @@ public class CreateUserTest {
     public void createTwoSimilarUsersGetError() {
         user = new User(email, password, name);
         Response response = UserOperations.createUser(user);
-        //accessToken нужен для последующего удаления курьера
+        //accessToken нужен для последующего удаления юзера
         accessToken = response.then().extract().path("accessToken").toString();
         UserOperations.createUser(user)
                 .then().assertThat().statusCode(HttpStatus.SC_FORBIDDEN)

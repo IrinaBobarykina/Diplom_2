@@ -43,7 +43,7 @@ public class LoginUserTest {
     public void logInGetSuccessResponse() {
         user = new User(email, password, name);
         Response responseCreating = UserOperations.createUser(user);
-        //accessToken нужен для последующего удаления курьера
+        //accessToken нужен для последующего удаления юзера
         accessToken = responseCreating.then().extract().path("accessToken").toString();
         Response responseLogin = UserOperations.logInUser(user);
         responseLogin.then()

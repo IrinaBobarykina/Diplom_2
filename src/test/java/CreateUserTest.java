@@ -7,17 +7,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import user.User;
+import utils.Generator;
 import user.UserOperations;
 import utils.BaseURI;
 
 import static org.hamcrest.CoreMatchers.*;
 
 public class CreateUserTest {
-    private static String domain_name;
-    private static String email;
-    private static String password;
-    private static String name;
-
 
     User user;
     String accessToken;
@@ -25,10 +21,7 @@ public class CreateUserTest {
     @Before
     public void setUp() {
         RestAssured.baseURI = BaseURI.BASE_URI;
-        domain_name = "@gmail.com";
-        email = RandomStringUtils.randomAlphabetic(8) + domain_name;
-        password = RandomStringUtils.randomAlphabetic(8);
-        name = RandomStringUtils.randomAlphabetic(8);
+        user = Generator.generateUser();
     }
 
     @After
@@ -39,7 +32,6 @@ public class CreateUserTest {
     @Test
     @DisplayName("Create a new user using correct data")
     public void createNewUserGetSuccessResponse() {
-        user = new User(email, password, name);
         Response response = UserOperations.createUser(user);
         //accessToken нужен для последующего удаления юзера
         accessToken = response.then().extract().path("accessToken").toString();
@@ -55,7 +47,6 @@ public class CreateUserTest {
     @Test
     @DisplayName("Create 2 similar users")
     public void createTwoSimilarUsersGetError() {
-        user = new User(email, password, name);
         Response response = UserOperations.createUser(user);
         //accessToken нужен для последующего удаления юзера
         accessToken = response.then().extract().path("accessToken").toString();
@@ -70,7 +61,11 @@ public class CreateUserTest {
     @Test
     @DisplayName("Create an user without an email")
     public void createUserWithoutEmailGetError() {
+
+        String password = RandomStringUtils.randomAlphabetic(8);
+        String name = RandomStringUtils.randomAlphabetic(8);
         user = new User(password, name);
+
         UserOperations.createUser(user)
                 .then().assertThat().statusCode(HttpStatus.SC_FORBIDDEN)
                 .and()
@@ -83,7 +78,11 @@ public class CreateUserTest {
     @Test
     @DisplayName("Create an user without a password")
     public void createUserWithoutPasswordGetError() {
+
+        String email = RandomStringUtils.randomAlphabetic(8) + "@gmail.com";
+        String name = RandomStringUtils.randomAlphabetic(8);
         user = new User(email, name);
+
         UserOperations.createUser(user)
                 .then().assertThat().statusCode(HttpStatus.SC_FORBIDDEN)
                 .and()
@@ -96,6 +95,10 @@ public class CreateUserTest {
     @Test
     @DisplayName("Create an user without a name")
     public void createUserWithoutNameGetError() {
+
+        String email = RandomStringUtils.randomAlphabetic(8) + "@gmail.com";
+        String password = RandomStringUtils.randomAlphabetic(8);
+
         user = new User(email, password);
         UserOperations.createUser(user)
                 .then().assertThat().statusCode(HttpStatus.SC_FORBIDDEN)

@@ -6,7 +6,7 @@ public class APIs {
     public static final String REGISTER_PATH = "/api/auth/register";
 
     //    логин юзера POST
-    public static final String LOGIN_PATH = "/api/auth/login ";
+    public static final String LOGIN_PATH = "/api/auth/login";
 
     //    изменение данных юзера PATCH + удаление пользователя DELETE
     public static final String USER_PATH = "/api/auth/user";

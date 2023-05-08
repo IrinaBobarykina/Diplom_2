@@ -32,15 +32,6 @@ mvn clean test
    ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-<!-- APIs -->
-## Tested classes
-
-1. User
-2. Order
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- APIs -->
 ## Tested APIs
 ### [API doc](https://code.s3.yandex.net/qa-automation-engineer/java/cheatsheets/paid-track/diplom/api-documentation.pdf)

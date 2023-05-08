@@ -42,13 +42,13 @@ public class UserOperations {
     @Step("Edit an authorized user")
     public static Response editAuthorizedUser(String accessToken, UserEditedData userEditedData) {
         Response response = given()
-                    .header("Content-type", "application/json")
-                    .and()
-                    .header("Authorization", accessToken)
-                    .and()
-                    .body(userEditedData)
-                    .when()
-                    .patch(APIs.USER_PATH);
+                .header("Content-type", "application/json")
+                .and()
+                .header("Authorization", accessToken)
+                .and()
+                .body(userEditedData)
+                .when()
+                .patch(APIs.USER_PATH);
         return response;
     }
 

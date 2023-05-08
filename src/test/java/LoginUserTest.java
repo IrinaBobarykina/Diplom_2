@@ -32,7 +32,7 @@ public class LoginUserTest {
 
     @Test
     @DisplayName("Log in using correct data")
-    public void logInGetSuccessResponse() {
+    public void logInGetSuccess() {
         Response responseCreating = UserOperations.createUser(user);
         //accessToken нужен для последующего удаления юзера
         accessToken = responseCreating.then().extract().path("accessToken").toString();

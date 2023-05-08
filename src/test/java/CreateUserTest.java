@@ -31,7 +31,7 @@ public class CreateUserTest {
 
     @Test
     @DisplayName("Create a new user using correct data")
-    public void createNewUserGetSuccessResponse() {
+    public void createNewUserGetSuccess() {
         Response response = UserOperations.createUser(user);
         //accessToken нужен для последующего удаления юзера
         accessToken = response.then().extract().path("accessToken").toString();

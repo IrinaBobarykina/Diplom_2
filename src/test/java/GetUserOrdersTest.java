@@ -32,7 +32,7 @@ public class GetUserOrdersTest {
 
     @Test
     @DisplayName("Get orders of an authorized user")
-    public void getOrdersAuthorizedUserGetSuccessResponse() {
+    public void getOrdersAuthorizedUserGetSuccess() {
         Response response = UserOperations.createUser(user);
         //accessToken нужен для создания заказа и последующего удаления юзера
         accessToken = response.then().extract().path("accessToken").toString();

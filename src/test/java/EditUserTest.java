@@ -34,7 +34,7 @@ public class EditUserTest {
 
     @Test
     @DisplayName("Edit an email of an authorized user")
-    public void editEmailAuthorizedUserGetSuccessResponse() {
+    public void editEmailAuthorizedUserGetSuccess() {
 
         Response responseCreating = UserOperations.createUser(user);
         //accessToken нужен для редактирования и последующего удаления юзера

@@ -1,25 +1,25 @@
 package utils;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomUtils;
 import user.User;
 import user.UserEditedData;
 
 public class Generator {
 
-    private static final String domain_name = "@gmail.com";
+    static Faker faker = new Faker();
 
     public static User generateUser() {
-        String email = RandomStringUtils.randomAlphabetic(8) + domain_name;
-        String password = RandomStringUtils.randomAlphabetic(8);
-        String name = RandomStringUtils.randomAlphabetic(8);
+        String email = faker.internet().emailAddress();
+        String password = faker.internet().password(6, 10);
+        String name = faker.name().fullName();
         return new User(email, password, name);
     }
 
     public static UserEditedData generateUserEditedData() {
-        String newEmail = RandomStringUtils.randomAlphabetic(8) + domain_name;
-        String newPassword = RandomStringUtils.randomAlphabetic(8);
-        String newName = RandomStringUtils.randomAlphabetic(8);
+        String newEmail = faker.internet().emailAddress();
+        String newPassword = faker.internet().password(6, 10);
+        String newName = faker.name().fullName();
         return new UserEditedData(newEmail, newPassword, newName);
     }
 
